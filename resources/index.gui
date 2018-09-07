@@ -1,3 +1,5 @@
 <svg>
   <rect id="background" />
+  <text id="changeable" pointer-events="visible">Hello World!</text>
+  <rect id="clickMe" x="0" y="0" height="50" width="50" fill="blue" pointer-events="visible" />
 </svg>
