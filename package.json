@@ -4,11 +4,11 @@
   "private": true,
   "license": "UNLICENSED",
   "devDependencies": {
-    "@fitbit/sdk": "~1.0.2",
+    "@fitbit/sdk": "^1.0.2",
     "@fitbit/sdk-cli": "^1.0.1"
   },
   "fitbit": {
-    "appUUID": "28665a11-773e-4960-8047-78fab25d3a88",
+    "appUUID": "70945904-55fa-444b-ab88-e9ecb8f543d4",
     "appType": "app",
     "appDisplayName": "Dice Roller",
     "iconFile": "resources/icon.png",
