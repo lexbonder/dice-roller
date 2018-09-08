@@ -1,3 +1,12 @@
 <svg>
-  <rect id="background" />
+  <use id="btn-tr" href="#combo-button-upper-right" fill="fb-red">
+    <set href="combo-button-icon" attributeName="href" to="icon.png"/>
+    <set href="combo-button-stroke" attributeName="display" to="inline"/>
+    <set href="combo-button-icon-press" attributeName="href" to="icon-pressed.png"/>
+  </use>
+  <use id="btn-br" href="#combo-button-lower-right" fill="fb-red">
+    <set href="combo-button-icon" attributeName="href" to="icon.png"/>
+    <set href="combo-button-stroke" attributeName="display" to="inline"/>
+    <set href="combo-button-icon-press" attributeName="href" to="icon-pressed.png"/>
+  </use>
 </svg>
