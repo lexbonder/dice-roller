@@ -1,4 +1,40 @@
-<svg>
+<svg viewport-fill="fb-cyan">
+  <!-- <use href="#scrollview">
+    <use href="#scrollview-item">
+      <text fill="white">Oh</text>
+    </use>
+    <use href="#scrollview-item">
+      <text fill="white">Em</text>
+    </use>
+    <use href="#scrollview-item">
+      <text fill="white">Gee</text>
+    </use>
+  </use> -->
+  <use id="tumbler" href="#tumblerview">
+    <use id="d4" href="#tumbler-item" class="item">
+      <text id="content">D4</text>
+    </use>
+    <use id="d6" href="#tumbler-item" class="item">
+      <text id="content">D6</text>
+    </use>
+    <use id="d8" href="#tumbler-item" class="item">
+      <text id="content">D8</text>
+    </use>
+    <use id="d10" href="#tumbler-item" class="item">
+      <text id="content">D10</text>
+    </use>
+    <use id="d100" href="#tumbler-item" class="item">
+      <text id="content">D100</text>
+    </use>
+    <use id="d12" href="#tumbler-item" class="item">
+      <text id="content">D12</text>
+    </use>
+    <use id="d20" href="#tumbler-item" class="item">
+      <text id="content">D20</text>
+    </use>
+  </use>
+
+<!-- Combo Buttons -->
   <use id="btn-tr" href="#combo-button-upper-right" fill="fb-red">
     <set href="combo-button-icon" attributeName="href" to="icon.png"/>
     <set href="combo-button-stroke" attributeName="display" to="inline"/>
