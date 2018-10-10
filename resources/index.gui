@@ -1,26 +1,59 @@
 <svg viewport-fill="fb-cyan">
 
-  <use id="tumbler" pointer-events="visible" href="#tumblerview">
+  <use id="diceTumbler" class="tumbler" pointer-events="visible" href="#tumblerview">
     <use id="item0" href="#tumbler-item" class="item">
-      <text id="content">D4</text>
+      <text id="content">d4</text>
     </use>
     <use id="item1" href="#tumbler-item" class="item">
-      <text id="content">D6</text>
+      <text id="content">d6</text>
     </use>
     <use id="item2" href="#tumbler-item" class="item">
-      <text id="content">D8</text>
+      <text id="content">d8</text>
     </use>
     <use id="item3" href="#tumbler-item" class="item">
-      <text id="content">D10</text>
+      <text id="content">d10</text>
     </use>
     <use id="item4" href="#tumbler-item" class="item">
-      <text id="content">D100</text>
+      <text id="content">d100</text>
     </use>
     <use id="item5" href="#tumbler-item" class="item">
-      <text id="content">D12</text>
+      <text id="content">d12</text>
     </use>
     <use id="item6" href="#tumbler-item" class="item">
-      <text id="content">D20</text>
+      <text id="content">d20</text>
+    </use>
+  </use>
+
+  <use id="qtyTumbler" class="tumbler" visibility="hidden" pointer-events="visible" href="#tumblerview">
+    <use id="item0" href="#tumbler-item" class="item">
+      <text id="content">1</text>
+    </use>
+    <use id="item1" href="#tumbler-item" class="item">
+      <text id="content">2</text>
+    </use>
+    <use id="item2" href="#tumbler-item" class="item">
+      <text id="content">3</text>
+    </use>
+    <use id="item3" href="#tumbler-item" class="item">
+      <text id="content">4</text>
+    </use>
+    <use id="item4" href="#tumbler-item" class="item">
+      <text id="content">5</text>
+    </use>
+    <use id="item5" href="#tumbler-item" class="item">
+      <text id="content">6</text>
+    </use>
+    <use id="item6" href="#tumbler-item" class="item">
+      <text id="content">7</text>
+    </use>
+    <use id="item7" href="#tumbler-item" class="item">
+      <text id="content">8</text>
+    </use>
+    <use id="item8" href="#tumbler-item" class="item">
+      <text id="content">9</text>
+    </use>
+    <use id="item9" href="#tumbler-item" class="item">
+      <text id="content">10</text>
     </use>
   </use>
 
