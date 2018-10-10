@@ -5,6 +5,16 @@
   text-length: 32;
 } */
 
-#tumbler { y: 50%-55; }
-.item { height: 90; }
-.item text { font-size: 80; fill: white; x: 5;  }
+#tumbler {
+  y: 30%-20;
+}
+
+.item {
+  height: 120;
+}
+
+.item text {
+  font-size: 120;
+  fill: white;
+  x: 5;
+}
