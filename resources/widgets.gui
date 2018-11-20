@@ -11,5 +11,7 @@
     <!-- TUMBLERVIEW WIDGET -->
     <!-- https://dev.fitbit.com/build/guides/design-guidelines/ui-components/#tumbler -->
     <link rel="import" href="/mnt/sysassets/widgets/tumblerview_widget.gui" />
+    <!-- TILE LIST WIDGET -->
+    <link rel="import" href="/mnt/sysassets/widgets/tile_list_widget.gui" />
   </defs>
 </svg>
