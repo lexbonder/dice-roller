@@ -1,3 +1,14 @@
+// class Die {
+//   constructor(name, max) {
+//     this.name = name;
+//     this.max = max;
+//   }
+
+//   rollDie = () => {
+//     this.roll = Math.floor(Math.random() * this.max + 1);
+//   };
+// }
+
 export default {
   d4: {
     name: 'd4',

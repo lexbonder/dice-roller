@@ -8,21 +8,12 @@ const diceTumbler = document.getElementById('diceTumbler');
 const qtyTumbler = document.getElementById('qtyTumbler');
 const confirmScreen = document.getElementById('confirm');
 
-// ////////
-// let list = document.getElementById('my-list');
-// let items = list.getElementsByClassName('tile-list-item');
-
-// items.forEach((element, index) => {
-//   let touch = element.getElementById('touch-me');
-//   touch.onclick = evt => {
-//     console.log(`touched: ${index}`);
-//   };
-// });
-
-// ////////
-
 let chosenDie;
 const diceToRoll = []; // [{name: 'd6', qty: 3}, {name: 'd8', qty: 2}]
+
+/****************************** 
+********* Select Die **********
+******************************/
 
 diceTumbler.onclick = () => {
   const selectedIndex = diceTumbler.value;
@@ -34,32 +25,79 @@ diceTumbler.onclick = () => {
   console.log('Chosen Die: ' + chosenDie);
 };
 
+/******************************
+********* Select Qty **********
+******************************/
+
 qtyTumbler.onclick = () => {
   const selectedIndex = qtyTumbler.value;
   const selectedItem = qtyTumbler.getElementById('item' + selectedIndex);
   const selectedQty = selectedItem.getElementById('content');
   qtyTumbler.style.visibility = 'hidden';
-  // confirmScreen.style.visibility = 'visible';
+  confirmScreen.style.visibility = 'visible';
   diceToRoll.push({ name: chosenDie, qty: parseInt(selectedQty.text, 10) });
-  console.log('result: ' + diceToRoll[0].name + ' ' + diceToRoll[0].qty);
+  renderConfirmList();
+  console.log('result: ' + diceToRoll[diceToRoll.length - 1].name + ' ' + diceToRoll[diceToRoll.length - 1].qty);
 };
+
+/******************************
+***** Confirmation Screen *****
+******************************/
+
+const renderConfirmList= () => {
+  confirmScreen.delegate = {
+    getTileInfo: function (index) {
+      return {
+        type: 'my-pool',
+        value: `${diceToRoll[index].name} x ${diceToRoll[index].qty}`,
+        index,
+      };
+    },
+    configureTile: function (tile, info) {
+      if (info.type == 'my-pool') {
+        tile.getElementById('text').text = info.value;
+        let touch = tile.getElementById('touch-me');
+        touch.onclick = evt => {
+          console.log(`touched: ${info.index}`);
+        };
+      }
+    },
+  };
+  
+  confirmScreen.length = diceToRoll.length;
+}
+  
+/******************************
+***** Dice Roll Function ******
+******************************/
 
 const rollDice = dice => {
-  return dice.reduce((result, die) => {
-    let { qty, name } = die;
+  return dice.reduce(
+    (result, die) => {
+      let { qty, name } = die;
 
-    for (let i = 0; i < qty; i++) {
-      let roll = Math.floor((Math.random() * diceBag[name].max) + 1)
-      result.total += roll;
-      result.rolledDice.push({ name, roll })
-    }
-    return result;
-  }, { total: 0, rolledDice: [] })
+      for (let i = 0; i < qty; i++) {
+        let roll = Math.floor(Math.random() * diceBag[name].max + 1);
+        result.total += roll;
+        result.rolledDice.push({ name, roll });
+      }
+      return result;
+    },
+    { total: 0, rolledDice: [] }
+  );
 };
+
+/******************************
+***** Coin Flip Function ******
+******************************/
 
 const coinFlip = () => {
   return Math.random() > 0.5 ? 'Heads' : 'Tails';
 };
+
+/******************************
+***** Quick Roll Buttons ******
+******************************/
 
 tr.onactivate = () => {
   console.log(rollDice([{ name: 'd20', qty: 1 }]).total);
@@ -69,7 +107,9 @@ br.onactivate = () => {
   console.log(coinFlip());
 };
 
-// Back button flow
+/******************************
+********* Back Button *********
+******************************/
 
 document.onkeypress = e => {
   e.preventDefault();
