@@ -1,7 +1,11 @@
+<!-- ===================================================== -->
+<!-- ============== Screen: 348 x 250 ==================== -->
+<!-- ===================================================== -->
+
 <svg>
 <!-- ===================================================== -->
 <!-- ========== DICE TUMBLER - PAGE 1 ==================== -->
-<!-- === Add / remove visibility="hidden"================= -->
+<!-- ======== use display="none" to hide ================= -->
   <use id="diceTumbler" class="tumbler" pointer-events="visible" href="#tumblerview">
     <use id="item0" href="#tumbler-item" class="item">
       <text id="content">d4</text>
@@ -74,39 +78,35 @@
             height="100%-2" opacity="0" />
     </symbol>
   </defs>
-  <use id="confirm" href="#tile-list" display="none">
-    <var id="virtual" value="1" />
-    <var id="separator-height-bottom" value="2" />
+  <g id="confirm" display="none">
+    <use id="dice-list" href="#tile-list" height="70%" overflow="hidden" >
+      <var id="virtual" value="1" />
+      <var id="separator-height-bottom" value="2" />
 
-    <use id="my-pool" href="#tile-list-pool">
-      <use id="my-pool[0]" href="#my-tile-item" class="tile-list-item" />
-      <use id="my-pool[1]" href="#my-tile-item" class="tile-list-item" />
-      <use id="my-pool[2]" href="#my-tile-item" class="tile-list-item" />
-      <use id="my-pool[3]" href="#my-tile-item" class="tile-list-item" />
-      <use id="my-pool[4]" href="#my-tile-item" class="tile-list-item" />
-      <use id="my-pool[5]" href="#my-tile-item" class="tile-list-item" />
-      <use id="my-pool[6]" href="#my-tile-item" class="tile-list-item" />
-      <use id="my-pool[7]" href="#my-tile-item" class="tile-list-item" />
-      <use id="my-pool[8]" href="#my-tile-item" class="tile-list-item" />
-      <use id="my-pool[9]" href="#my-tile-item" class="tile-list-item" />
+      <use id="my-pool" href="#tile-list-pool">
+        <use id="my-pool[0]" href="#my-tile-item" class="tile-list-item" />
+        <use id="my-pool[1]" href="#my-tile-item" class="tile-list-item" />
+        <use id="my-pool[2]" href="#my-tile-item" class="tile-list-item" />
+        <use id="my-pool[3]" href="#my-tile-item" class="tile-list-item" />
+        <use id="my-pool[4]" href="#my-tile-item" class="tile-list-item" />
+        <use id="my-pool[5]" href="#my-tile-item" class="tile-list-item" />
+        <use id="my-pool[6]" href="#my-tile-item" class="tile-list-item" />
+        <use id="my-pool[7]" href="#my-tile-item" class="tile-list-item" />
+        <use id="my-pool[8]" href="#my-tile-item" class="tile-list-item" />
+        <use id="my-pool[9]" href="#my-tile-item" class="tile-list-item" />
+      </use>
     </use>
-  </use>
+  <!-- ================================= -->
+  <!-- === More Dice and Roll Buttons == -->
+  <!-- ================================= -->
+    <svg y="70%" width="50%">
+      <use id="more-dice-btn" href="#square-button" fill="fb-light-gray">
+        <set href="#text" attributeName="text-buffer" to="More Dice" />
+      </use>
+      <use id="roll-btn" href="#square-button" x="$" fill="fb-green">
+        <set href="#text" attributeName="text-buffer" to="Roll" />
+      </use>
+    </svg>
+  </g>
 
-<!-- ===================================================== -->
-<!-- =============== Physical Buttons ==================== -->
-<!-- ===================================================== -->
-
-<!-- Custom Button -->
-  <use id="btn-tr" href="#combo-button-upper-right" fill="fb-red">
-    <set href="combo-button-icon" attributeName="href" to="icon.png"/>
-    <set href="combo-button-stroke" attributeName="display" to="inline"/>
-    <set href="combo-button-icon-press" attributeName="href" to="icon-pressed.png"/>
-  </use>
-
-<!-- Coin-Flip Button -->
-  <use id="btn-br" href="#combo-button-lower-right" fill="fb-red">
-    <set href="combo-button-icon" attributeName="href" to="icon.png"/>
-    <set href="combo-button-stroke" attributeName="display" to="inline"/>
-    <set href="combo-button-icon-press" attributeName="href" to="icon-pressed.png"/>
-  </use>
 </svg>

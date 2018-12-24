@@ -6,10 +6,11 @@
     <link rel="import" href="/mnt/sysassets/widgets/baseview_widget.gui" />
     <!-- COMBO BUTTON -->
     <link rel="import" href="/mnt/sysassets/widgets/combo_button_widget.gui" />
+    <!-- SQUARE BUTTON -->
+    <link rel="import" href="/mnt/sysassets/widgets/square_button_widget.gui" />
     <!-- SCROLLVIEW WIDGET -->
     <link rel="import" href="/mnt/sysassets/widgets/scrollview_widget.gui" />
     <!-- TUMBLERVIEW WIDGET -->
-    <!-- https://dev.fitbit.com/build/guides/design-guidelines/ui-components/#tumbler -->
     <link rel="import" href="/mnt/sysassets/widgets/tumblerview_widget.gui" />
     <!-- TILE LIST WIDGET -->
     <link rel="import" href="/mnt/sysassets/widgets/tile_list_widget.gui" />

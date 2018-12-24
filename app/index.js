@@ -2,11 +2,13 @@ import document from 'document';
 import { me } from 'appbit';
 import diceBag from '../common/diceBag';
 
-const tr = document.getElementById('btn-tr');
-const br = document.getElementById('btn-br');
 const diceTumbler = document.getElementById('diceTumbler');
 const qtyTumbler = document.getElementById('qtyTumbler');
 const confirmScreen = document.getElementById('confirm');
+const diceList = document.getElementById('dice-list');
+
+const moreDiceBtn = document.getElementById('more-dice-btn');
+const rollBtn = document.getElementById('roll-btn');
 
 let chosenDie;
 const diceToRoll = []; // [{name: 'd6', qty: 3}, {name: 'd8', qty: 2}]
@@ -38,10 +40,9 @@ qtyTumbler.onclick = () => {
   diceToRoll.push({ name: chosenDie, qty: parseInt(selectedQty.text, 10) });
   renderConfirmList();
   console.log(
-    'result: ' +
-      diceToRoll[diceToRoll.length - 1].name +
-      ' ' +
+    `result: ${diceToRoll[diceToRoll.length - 1].name} ${
       diceToRoll[diceToRoll.length - 1].qty
+    }`
   );
 };
 
@@ -58,7 +59,7 @@ qtyTumbler.onclick = () => {
 //   { name: 'd8', qty: 6 },
 // ];
 const renderConfirmList = () => {
-  confirmScreen.delegate = {
+  diceList.delegate = {
     getTileInfo: function(index) {
       return {
         type: 'my-pool',
@@ -76,9 +77,15 @@ const renderConfirmList = () => {
       }
     },
   };
-  
-  confirmScreen.length = diceToRoll.length;
-}
+
+  diceList.length = diceToRoll.length;
+};
+
+/******************************
+ ** Add Dice and Roll buttons **
+ ******************************/
+
+moreDiceBtn.onclick = backButton;
 
 /******************************
  ***** Dice Roll Function ******
@@ -108,32 +115,45 @@ const coinFlip = () => {
   return Math.random() > 0.5 ? 'Heads' : 'Tails';
 };
 
-/******************************
- ***** Quick Roll Buttons ******
- ******************************/
-
-tr.onactivate = () => {
-  console.log(rollDice([{ name: 'd20', qty: 1 }]).total);
-};
-
-br.onactivate = () => {
-  console.log(coinFlip());
-};
-
-/******************************
- ********* Back Button *********
+/*******************************
+ ****** Physical Buttons *******
  ******************************/
 
 document.onkeypress = e => {
   e.preventDefault();
-  if (e.key === 'back' && diceTumbler.style.display === 'inline') {
-    me.exit();
-  } else if (e.key === 'back' && qtyTumbler.style.display === 'inline') {
-    qtyTumbler.style.display = 'none';
-    diceTumbler.style.display = 'inline';
-  } else if (e.key === 'back' && confirmScreen.style.display === 'inline') {
-    confirmScreen.style.display = 'none';
-    qtyTumbler.style.display = 'inline';
-    confirmScreen.length = 0;
+  if (e.key === 'back') {
+    backButton();
+  } else if (e.key === 'up') {
+    quickRollBtn();
+  } else if (e.key === 'down') {
+    coinFlipBtn();
   }
 };
+
+/*******************************
+ ***** Quick Roll Buttons ******
+ ******************************/
+
+function quickRollBtn() {
+  console.log(rollDice([{ name: 'd20', qty: 1 }]).total);
+}
+
+function coinFlipBtn() {
+  console.log(coinFlip());
+}
+
+/*******************************
+ ********* Back Button *********
+ ******************************/
+
+function backButton() {
+  if (diceTumbler.style.display === 'inline') {
+    me.exit();
+  } else if (qtyTumbler.style.display === 'inline') {
+    qtyTumbler.style.display = 'none';
+    diceTumbler.style.display = 'inline';
+  } else if (confirmScreen.style.display === 'inline') {
+    confirmScreen.style.display = 'none';
+    diceTumbler.style.display = 'inline';
+  }
+}
