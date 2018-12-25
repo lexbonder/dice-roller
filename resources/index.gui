@@ -8,61 +8,61 @@
 <!-- ======== use display="none" to hide ================= -->
   <use id="diceTumbler" class="tumbler" pointer-events="visible" href="#tumblerview">
     <use id="item0" href="#tumbler-item" class="item">
-      <text id="content">d4</text>
+      <text id="content0">d4</text>
     </use>
     <use id="item1" href="#tumbler-item" class="item">
-      <text id="content">d6</text>
+      <text id="content1">d6</text>
     </use>
     <use id="item2" href="#tumbler-item" class="item">
-      <text id="content">d8</text>
+      <text id="content2">d8</text>
     </use>
     <use id="item3" href="#tumbler-item" class="item">
-      <text id="content">d10</text>
+      <text id="content3">d10</text>
     </use>
     <use id="item4" href="#tumbler-item" class="item">
-      <text id="content">d100</text>
+      <text id="content4">d100</text>
     </use>
     <use id="item5" href="#tumbler-item" class="item">
-      <text id="content">d12</text>
+      <text id="content5">d12</text>
     </use>
     <use id="item6" href="#tumbler-item" class="item">
-      <text id="content">d20</text>
+      <text id="content6">d20</text>
     </use>
   </use>
 
 <!-- ===================================================== -->
-<!-- ========== QTY TUMBLER - PAGE 2 ==================== -->
+<!-- =========== QTY TUMBLER - PAGE 2 ==================== -->
 <!-- ===================================================== -->
   <use id="qtyTumbler" class="tumbler" display="none" pointer-events="visible" href="#tumblerview">
     <use id="item0" href="#tumbler-item" class="item">
-      <text id="content">1</text>
+      <text id="content0">1</text>
     </use>
     <use id="item1" href="#tumbler-item" class="item">
-      <text id="content">2</text>
+      <text id="content1">2</text>
     </use>
     <use id="item2" href="#tumbler-item" class="item">
-      <text id="content">3</text>
+      <text id="content2">3</text>
     </use>
     <use id="item3" href="#tumbler-item" class="item">
-      <text id="content">4</text>
+      <text id="content3">4</text>
     </use>
     <use id="item4" href="#tumbler-item" class="item">
-      <text id="content">5</text>
+      <text id="content4">5</text>
     </use>
     <use id="item5" href="#tumbler-item" class="item">
-      <text id="content">6</text>
+      <text id="content5">6</text>
     </use>
     <use id="item6" href="#tumbler-item" class="item">
-      <text id="content">7</text>
+      <text id="content6">7</text>
     </use>
     <use id="item7" href="#tumbler-item" class="item">
-      <text id="content">8</text>
+      <text id="content7">8</text>
     </use>
     <use id="item8" href="#tumbler-item" class="item">
-      <text id="content">9</text>
+      <text id="content8">9</text>
     </use>
     <use id="item9" href="#tumbler-item" class="item">
-      <text id="content">10</text>
+      <text id="content9">10</text>
     </use>
   </use>
 
@@ -107,6 +107,40 @@
         <set href="#text" attributeName="text-buffer" to="Roll" />
       </use>
     </svg>
+  </g>
+
+<!-- ===================================================== -->
+<!-- ============== Results Page - PAGE 4 ================ -->
+<!-- ===================================================== -->
+
+  <g id="results" display="none">
+    <text x="10" y="50" font-family="System-Regular" fill="white" font-size="50" font-weight="light" text-anchor="start">Total:</text>
+    <text x="$+20" y="50" font-family="System-Regular" fill="white" font-size="50" font-weight="bold" id="roll-total">35</text>
+    <use id="dice-breakdown" href="#tile-list" y="60" height="75%" overflow="hidden" >
+      <var id="virtual" value="1" />
+      <var id="separator-height-bottom" value="2" />
+
+      <use id="my-pool" href="#tile-list-pool">
+        <use id="my-pool[0]" href="#my-tile-item" class="tile-list-item" />
+        <use id="my-pool[1]" href="#my-tile-item" class="tile-list-item" />
+        <use id="my-pool[2]" href="#my-tile-item" class="tile-list-item" />
+        <use id="my-pool[3]" href="#my-tile-item" class="tile-list-item" />
+        <use id="my-pool[4]" href="#my-tile-item" class="tile-list-item" />
+        <use id="my-pool[5]" href="#my-tile-item" class="tile-list-item" />
+        <use id="my-pool[6]" href="#my-tile-item" class="tile-list-item" />
+        <use id="my-pool[7]" href="#my-tile-item" class="tile-list-item" />
+        <use id="my-pool[8]" href="#my-tile-item" class="tile-list-item" />
+        <use id="my-pool[9]" href="#my-tile-item" class="tile-list-item" />
+      </use>
+    </use>
+  </g>
+
+<!-- ===================================================== -->
+<!-- ================= Coin Flip Page ==================== -->
+<!-- ===================================================== -->
+
+  <g id="coin-flip" display="none">
+    <text x="50%" text-anchor="middle" id="coin-flip-result" font-size="40" fill="white">Words</text>
   </g>
 
 </svg>

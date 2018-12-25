@@ -5,7 +5,11 @@ import diceBag from '../common/diceBag';
 const diceTumbler = document.getElementById('diceTumbler');
 const qtyTumbler = document.getElementById('qtyTumbler');
 const confirmScreen = document.getElementById('confirm');
+const resultsScreen = document.getElementById('results');
+const coinFlipScreen = document.getElementById('coin-flip');
+
 const diceList = document.getElementById('dice-list');
+const diceBreakdown = document.getElementById('dice-breakdown');
 
 const moreDiceBtn = document.getElementById('more-dice-btn');
 const rollBtn = document.getElementById('roll-btn');
@@ -20,11 +24,10 @@ const diceToRoll = []; // [{name: 'd6', qty: 3}, {name: 'd8', qty: 2}]
 diceTumbler.onclick = () => {
   const selectedIndex = diceTumbler.value;
   const selectedItem = diceTumbler.getElementById('item' + selectedIndex);
-  const selectedDie = selectedItem.getElementById('content');
+  const selectedDie = selectedItem.getElementById('content' + selectedIndex);
+  chosenDie = selectedDie.text;
   qtyTumbler.style.display = 'inline';
   diceTumbler.style.display = 'none';
-  chosenDie = selectedDie.text;
-  console.log('Chosen Die: ' + chosenDie);
 };
 
 /******************************
@@ -34,30 +37,17 @@ diceTumbler.onclick = () => {
 qtyTumbler.onclick = () => {
   const selectedIndex = qtyTumbler.value;
   const selectedItem = qtyTumbler.getElementById('item' + selectedIndex);
-  const selectedQty = selectedItem.getElementById('content');
+  const selectedQty = selectedItem.getElementById('content' + selectedIndex);
+  diceToRoll.push({ name: chosenDie, qty: parseInt(selectedQty.text, 10) });
   qtyTumbler.style.display = 'none';
   confirmScreen.style.display = 'inline';
-  diceToRoll.push({ name: chosenDie, qty: parseInt(selectedQty.text, 10) });
   renderConfirmList();
-  console.log(
-    `result: ${diceToRoll[diceToRoll.length - 1].name} ${
-      diceToRoll[diceToRoll.length - 1].qty
-    }`
-  );
 };
 
 /******************************
  ***** Confirmation Screen *****
  ******************************/
 
-// const mockDice = [
-//   { name: 'd6', qty: 1 },
-//   { name: 'd8', qty: 2 },
-//   { name: 'd6', qty: 3 },
-//   { name: 'd8', qty: 4 },
-//   { name: 'd6', qty: 5 },
-//   { name: 'd8', qty: 6 },
-// ];
 const renderConfirmList = () => {
   diceList.delegate = {
     getTileInfo: function(index) {
@@ -70,10 +60,10 @@ const renderConfirmList = () => {
     configureTile: function(tile, info) {
       if (info.type == 'my-pool') {
         tile.getElementById('text').text = info.value;
-        let touch = tile.getElementById('touch-me');
-        touch.onclick = evt => {
-          console.log(`touched: ${info.index}`);
-        };
+        // let touch = tile.getElementById('touch-me');
+        // touch.onclick = evt => {
+        //   console.log(`touched: ${info.index}`);
+        // };
       }
     },
   };
@@ -82,17 +72,50 @@ const renderConfirmList = () => {
 };
 
 /******************************
- ** Add Dice and Roll buttons **
+ ******* Results Screen ********
  ******************************/
 
-moreDiceBtn.onclick = backButton;
+const renderResults = results => {
+  qtyTumbler.style.display = 'none';
+  confirmScreen.style.display = 'none';
+  diceTumbler.style.display = 'none';
+  coinFlipScreen.style.display = 'none';
+  resultsScreen.style.display = 'inline';
+  const rollTotal = resultsScreen.getElementById('roll-total');
+  rollTotal.text = results.total;
+  renderBreakdown(results.rolledDice);
+  diceToRoll.length = 0;
+};
+
+const renderBreakdown = dice => {
+  diceBreakdown.delegate = {
+    getTileInfo: function(index) {
+      return {
+        type: 'my-pool',
+        value: `${dice[index].name} = ${dice[index].roll}`,
+        index,
+      };
+    },
+    configureTile: function(tile, info) {
+      if (info.type == 'my-pool') {
+        tile.getElementById('text').text = info.value;
+        // let touch = tile.getElementById('touch-me');
+        // touch.onclick = evt => {
+        //   console.log(`touched: ${info.index}`);
+        // };
+      }
+    },
+  };
+
+  diceBreakdown.length = dice.length;
+};
 
 /******************************
  ***** Dice Roll Function ******
  ******************************/
 
 const rollDice = dice => {
-  return dice.reduce(
+  const results = dice.reduce(
     (result, die) => {
       let { qty, name } = die;
 
@@ -105,14 +128,36 @@ const rollDice = dice => {
     },
     { total: 0, rolledDice: [] }
   );
+  renderResults(results);
 };
 
 /******************************
  ***** Coin Flip Function ******
  ******************************/
 
+const renderCoinFlip = () => {
+  qtyTumbler.style.display = 'none';
+  confirmScreen.style.display = 'none';
+  diceTumbler.style.display = 'none';
+  resultsScreen.style.display = 'none';
+  coinFlipScreen.style.display = 'inline';
+};
+
 const coinFlip = () => {
-  return Math.random() > 0.5 ? 'Heads' : 'Tails';
+  const flip = Math.random() > 0.5 ? 'Heads' : 'Tails';
+  const flipResult = coinFlipScreen.getElementById('coin-flip-result');
+  flipResult.text = flip;
+  renderCoinFlip();
+};
+
+/******************************
+ ** Add Dice and Roll buttons **
+ ******************************/
+
+moreDiceBtn.onclick = backButton;
+
+rollBtn.onclick = () => {
+  rollDice(diceToRoll);
 };
 
 /*******************************
@@ -135,11 +180,11 @@ document.onkeypress = e => {
  ******************************/
 
 function quickRollBtn() {
-  console.log(rollDice([{ name: 'd20', qty: 1 }]).total);
+  rollDice([{ name: 'd20', qty: 1 }]);
 }
 
 function coinFlipBtn() {
-  console.log(coinFlip());
+  coinFlip();
 }
 
 /*******************************
@@ -154,6 +199,12 @@ function backButton() {
     diceTumbler.style.display = 'inline';
   } else if (confirmScreen.style.display === 'inline') {
     confirmScreen.style.display = 'none';
+    diceTumbler.style.display = 'inline';
+  } else if (resultsScreen.style.display === 'inline') {
+    resultsScreen.style.display = 'none';
+    diceTumbler.style.display = 'inline';
+  } else if (coinFlipScreen.style.display === 'inline') {
+    coinFlipScreen.style.display = 'none';
     diceTumbler.style.display = 'inline';
   }
 }
